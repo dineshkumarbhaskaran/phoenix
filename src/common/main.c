@@ -63,7 +63,7 @@ void main_loop(void)
 	if (cli_process_fdt(&s))
 		cli_secure_boot_cmd(s);
 
-	autoboot_command(s);
+	//autoboot_command(s);
 
 	cli_loop();
 	panic("No CLI available");
