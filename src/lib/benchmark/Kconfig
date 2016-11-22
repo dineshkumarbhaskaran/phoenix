@@ -1,0 +1,7 @@
+config BENCHMARK
+	bool "Add some benchmarking routines for processor"
+    select CMD_WHETSTONE
+	help
+        The Whetstone benchmark is a synthetic benchmark for evaluating 
+        the performance of computers
+

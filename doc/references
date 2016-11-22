@@ -1,1 +1,2 @@
-https://wiki.debian.org/ArmHardFloatPort
+General floating point support in ARM [https://wiki.debian.org/ArmHardFloatPort]
+Compiler for supporting vfpv4 [http://forum.xda-developers.com/showthread.php?t=2098133] [https://github.com/Christopher83/arm-cortex_a7-linux-gnueabihf-linaro_4.9]

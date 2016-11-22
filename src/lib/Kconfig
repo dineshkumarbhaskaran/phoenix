@@ -53,6 +53,7 @@ config LIB_RAND
 	  This library provides pseudo-random number generator functions.
 
 source lib/dhry/Kconfig
+source lib/benchmark/Kconfig
 
 source lib/rsa/Kconfig
 
