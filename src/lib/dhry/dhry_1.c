@@ -110,7 +110,7 @@ int             Int_Glob;
  {
 
 	
-        printf("\nRADO : Entry %s @ %d ###\n", __FILE__,__LINE__); 
+        printf("RADO : Entry %s @ %d ###\n", __FILE__,__LINE__); 
  
          One_Fifty   Int_1_Loc;
    REG   One_Fifty   Int_2_Loc;
@@ -215,7 +215,7 @@ int             Int_Glob;
        //start_time();
        start = get_timer(0);
    
-       for (Run_Index = 1; Run_Index <= Number_Of_Runs; ++Run_Index)
+       for (Run_Index = 1; Run_Index <= 2; /*Number_Of_Runs*/; ++Run_Index)
        {
  
          Proc_5();
