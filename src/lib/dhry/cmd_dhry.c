@@ -15,11 +15,15 @@ static int do_dhry(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	u64 dhry_per_sec;
 	int iterations = 1000000;
 
+	printf("\nRADO : Inside %s @ %d ###\n", __FILE__,__LINE__); 
 	if (argc > 1)
 		iterations = simple_strtoul(argv[1], NULL, 10);
 
+	printf("\nRADO : Before Timer start %s @ %d ###\n", __FILE__,__LINE__); 
 	start = get_timer(0);
+	printf("\nRADO : After Timer start: %ld  %s @ %d ###\n",start, __FILE__,__LINE__); 
 	dhry(iterations);
+	printf("\nRADO : After dhry called %s @ %d ###\n", __FILE__,__LINE__); 
 	duration = get_timer(start);
 	dhry_per_sec = lldiv(iterations * 1000ULL, duration);
 	vax_mips = lldiv(dhry_per_sec, 1757);

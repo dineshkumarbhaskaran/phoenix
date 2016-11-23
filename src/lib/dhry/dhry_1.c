@@ -108,6 +108,9 @@ int             Int_Glob;
    /* main program, corresponds to procedures        */
    /* Main and Proc_0 in the Ada version             */
  {
+
+	
+        printf("\nRADO : Entry %s @ %d ###\n", __FILE__,__LINE__); 
  
          One_Fifty   Int_1_Loc;
    REG   One_Fifty   Int_2_Loc;

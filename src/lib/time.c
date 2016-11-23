@@ -30,6 +30,7 @@ ulong notrace get_tbclk(void)
 #ifdef CONFIG_SYS_TIMER_COUNTER
 unsigned long notrace timer_read_counter(void)
 {
+        printf("\nRADO : Entry %s @ %d ###\n", __FILE__,__LINE__); 
 #ifdef CONFIG_SYS_TIMER_COUNTS_DOWN
 	return ~readl(CONFIG_SYS_TIMER_COUNTER);
 #else
@@ -86,7 +87,9 @@ uint64_t notrace get_ticks(void)
 
 uint64_t __weak notrace get_ticks(void)
 {
+        printf("\nRADO : Entry %s @ %d ###\n", __FILE__,__LINE__); 
 	unsigned long now = timer_read_counter();
+        printf("\nRADO : Timer cnt %ld %s @ %d ###\n", now, __FILE__,__LINE__); 
 
 	/* increment tbu if tbl has rolled over */
 	if (now < gd->timebase_l)
@@ -100,10 +103,13 @@ uint64_t __weak notrace get_ticks(void)
 /* Returns time in milliseconds */
 static uint64_t notrace tick_to_time(uint64_t tick)
 {
+        printf("\nRADO : Entry %s @ %d ###\n", __FILE__,__LINE__); 
 	ulong div = get_tbclk();
+        printf("\nRADO : Inside %ld -  %s @ %d ###\n", div, __FILE__,__LINE__); 
 
 	tick *= CONFIG_SYS_HZ;
 	do_div(tick, div);
+        printf("\nRADO : After div %llu %s @ %d ###\n", tick, __FILE__,__LINE__); 
 	return tick;
 }
 
@@ -115,6 +121,7 @@ int __weak timer_init(void)
 /* Returns time in milliseconds */
 ulong __weak get_timer(ulong base)
 {
+        printf("\nRADO : Entry %s @ %d ###\n", __FILE__,__LINE__); 
 	return tick_to_time(get_ticks()) - base;
 }
 
