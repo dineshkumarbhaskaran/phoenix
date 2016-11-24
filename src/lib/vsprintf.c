@@ -250,6 +250,73 @@ static char *number(char *buf, char *end, u64 num,
 	return buf;
 }
 
+void reverse(char *str, int len)
+{
+    int i=0, j=len-1, temp;
+    while (i<j)
+    {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++; j--;
+    }
+}
+ // of digits in x, then 0s are added at the beginning.
+int intToStr(uint64_t x, char str[], int d)
+{
+    int i = 0;
+
+    while (x) {
+        str[i++] = (x%10) + '0';
+        x = x/10;
+    }
+    // add 0s at the beginning
+    while (i < d) {
+        str[i++] = '0';
+    }
+ 
+    reverse(str, i);
+    str[i] = '\0';
+
+    return i;
+}
+// Converts a floating point number to string.
+static char *ftoa(char *buf, char *end, double n, int field_width,
+		int precision, int flags)
+{
+    int ipart = (int)n;
+    float fpart = n - (float)ipart;
+    uint64_t multiplier = 1;
+    int i, j;
+    char fbuf[40];
+    int len;
+    // convert integer part to string
+    i = intToStr(ipart, fbuf, 0);
+ 
+    if (precision == -1) {
+        precision = 6;
+    }
+
+    for (j = 0; j <= precision; j++) {
+        multiplier *= 10;
+    }
+
+    fbuf[i] = '.';  // add dot
+
+    fpart = fpart * multiplier;
+
+    len = i + intToStr((uint64_t)fpart, fbuf + i + 1, precision);
+
+	if (!(flags & LEFT))
+		while (len < field_width--)
+			ADDCH(buf, ' ');
+	for (i = 0; i < len; ++i)
+		ADDCH(buf, fbuf[i]);
+	while (len < field_width--)
+		ADDCH(buf, ' ');
+	return buf;
+}
+
 static char *string(char *buf, char *end, char *s, int field_width,
 		int precision, int flags)
 {
@@ -541,6 +608,12 @@ repeat:
 				fmt++;
 			continue;
 
+        case 'f':
+        case 'g':
+            str = ftoa(str, end, va_arg(args, double), 
+                    field_width, precision, flags);
+            continue;
+            
 		case 'n':
 			if (qualifier == 'l') {
 				long *ip = va_arg(args, long *);
