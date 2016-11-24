@@ -81,15 +81,15 @@ Enumeration     Func_1 (Capital_Letter Ch_1_Par_Val, Capital_Letter Ch_2_Par_Val
 /* variables for time measurement: */
 
 #ifdef TIMES
-#define Too_Small_Time 120
+//#define Too_Small_Time 120
                 /* Measurements should last at least about 2 seconds */
 #endif
 #ifdef TIME
 extern long     time();
                 /* see library function "time"  */
-#define Too_Small_Time 2
                 /* Measurements should last at least 2 seconds */
 #endif
+#define Too_Small_Time 2
 
 ulong           Begin_Time,
                 End_Time,
