@@ -15,7 +15,7 @@ obj-$(CONFIG_ZLIB) += zlib/
 obj-$(CONFIG_BZIP2) += bzip2/
 obj-$(CONFIG_TIZEN) += tizen/
 obj-$(CONFIG_FIT) += libfdt/
-obj-$(CONFIG_CMD_DHRYSTONE) += dhry/
+#obj-$(CONFIG_CMD_DHRYSTONE) += dhry/
 obj-$(CONFIG_BENCHMARK) += benchmark/
 
 obj-$(CONFIG_AES) += aes.o
