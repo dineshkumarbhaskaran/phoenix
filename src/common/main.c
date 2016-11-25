@@ -40,6 +40,7 @@ static void run_preboot_environment_command(void)
 #endif /* CONFIG_PREBOOT */
 }
 
+void dhry(int Number_Of_Runs);
 /* We come here after U-Boot is initialised and ready to process commands */
 void main_loop(void)
 {
@@ -64,6 +65,8 @@ void main_loop(void)
 		cli_secure_boot_cmd(s);
 
 	//autoboot_command(s);
+
+    dhry(1000000);
 
 	cli_loop();
 	panic("No CLI available");

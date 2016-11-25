@@ -262,7 +262,7 @@ void reverse(char *str, int len)
     }
 }
  // of digits in x, then 0s are added at the beginning.
-int intToStr(uint64_t x, char str[], int d)
+int intToStr(int x, char str[], int d)
 {
     int i = 0;
 
@@ -286,7 +286,7 @@ static char *ftoa(char *buf, char *end, double n, int field_width,
 {
     int ipart = (int)n;
     float fpart = n - (float)ipart;
-    uint64_t multiplier = 1;
+    float multiplier = 1;
     int i, j;
     char fbuf[40];
     int len;
@@ -295,6 +295,8 @@ static char *ftoa(char *buf, char *end, double n, int field_width,
  
     if (precision == -1) {
         precision = 6;
+    } else if (precision > 9) {
+        precision = 9;
     }
 
     for (j = 0; j <= precision; j++) {
@@ -305,7 +307,7 @@ static char *ftoa(char *buf, char *end, double n, int field_width,
 
     fpart = fpart * multiplier;
 
-    len = i + intToStr((uint64_t)fpart, fbuf + i + 1, precision);
+    len = i + intToStr((int)fpart, fbuf + i + 1, precision);
 
 	if (!(flags & LEFT))
 		while (len < field_width--)
