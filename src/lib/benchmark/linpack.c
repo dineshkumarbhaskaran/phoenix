@@ -87,6 +87,7 @@
 #include <common.h>
 #include <malloc.h>
 #include <linux/string.h>
+#include "cpuidh.h"
 #endif
 
 void print_time (int row);
@@ -107,24 +108,7 @@ double runSecs = 1;
 #define fprintf(a,b,c) printf(b,c)
 //#define fprinf(a,b,c,d,e,f,g,h) printf(b,c,d,e,f,g,h)
 #endif
-ulong start = 0, end = 0;
-float secs = 0.0;
-double fabs(double x)
-{ 
-	*(((int *) &x) + 1) &= 0x7fffffff;
-	return x;
-} 
-void start_time(void)
-{
-	start = get_timer(0); 
 
-}
- 
-void end_time(void) 
-{ 
-	end = get_timer(0) - start;
-	secs = end/1000.0;
-}
 //main (int argc, char *argv[])
 void linpack_rpi(void)
 {
@@ -872,9 +856,8 @@ void daxpy(int n, REAL da, REAL dx[], int incx, REAL dy[], int incy)
 */
 
 {
-        int i,ix,iy,m,mp1;
+        int i,ix,iy,m;
 
-        mp1 = 0;
         m = 0;
 
         if(n <= 0) return;
@@ -941,9 +924,8 @@ REAL ddot(int n, REAL dx[], int incx, REAL dy[], int incy)
 
 {
         REAL dtemp;
-        int i,ix,iy,m,mp1;
+        int i,ix,iy,m;
 
-        mp1 = 0;
         m = 0;
 
         dtemp = ZERO;
@@ -1008,9 +990,8 @@ void dscal(int n, REAL da, REAL dx[], int incx)
 */
 
 {
-        int i,m,mp1,nincx;
+        int i,m,nincx;
 
-        mp1 = 0;
         m = 0;
 
         if(n <= 0)return;
@@ -1068,7 +1049,7 @@ int idamax(int n, REAL dx[], int incx)
 
 {
         REAL dmax;
-        int i, ix, itemp;
+        int i, ix, itemp = 0;
 
         if( n < 1 ) return(-1);
         if(n ==1 ) return(0);

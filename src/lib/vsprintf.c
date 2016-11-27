@@ -284,14 +284,24 @@ int intToStr(int x, char str[], int d)
 static char *ftoa(char *buf, char *end, double n, int field_width,
 		int precision, int flags)
 {
-    int ipart = (int)n;
-    float fpart = n - (float)ipart;
     float multiplier = 1;
-    int i, j;
+    int i = 0, j;
     char fbuf[40];
     int len;
+    float fpart;
+    int ipart;
+    
+    if (n < 0) { 
+        n = -n;
+        fbuf[i] = '-';
+        i++;
+    }
+
+    ipart = (int) n;
+    fpart = n - (float)ipart;
+
     // convert integer part to string
-    i = intToStr(ipart, fbuf, 0);
+    i = i + intToStr(ipart, fbuf + i, 0);
  
     if (precision == -1) {
         precision = 6;
