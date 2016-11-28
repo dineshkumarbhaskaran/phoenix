@@ -281,7 +281,7 @@ static   struct Arrays
    #define k3           as2.K3
    #define m16          as2.M16
    #define j5           as2.J5
-   #define section      as2.Section
+   #define s_section      as2.Section
    #define n16          as2.N16
    #define MasterSum    as2.Mastersum
    #define m24          as2.M24
@@ -430,7 +430,7 @@ static int do_loop2(void)
     extra_loops[0][0] = 1;
     loop = 1000;
     which = 0;
-    section = 0;
+    s_section = 0;
     runRel = FALSE;
     do
     {
@@ -476,22 +476,22 @@ static int do_loop2(void)
 /************************************************************************
  *      Execute the kernels three times at different Do Spans           *
  ************************************************************************/
-    for ( section=0 ; section<3 ; section++ )
+    for ( s_section=0 ; s_section<3 ; s_section++ )
     {
-        loop_passes = 200 * mul[section];
+        loop_passes = 200 * mul[s_section];
         pass = -20;
-        mult = 2 * mul[section];
+        mult = 2 * mul[s_section];
         runRel = FALSE;
     
         for ( i=1; i<25; i++)
         {
-            extra_loops[section][i] = 1;
+            extra_loops[s_section][i] = 1;
         }
 #ifdef NON_BAREMETAL
         if (reliability)
         {
              local_time();
-             fprintf (outfile, " Part %ld of 3 start at %s\n", section + 1, timeday);
+             fprintf (outfile, " Part %ld of 3 start at %s\n", s_section + 1, timeday);
              fflush(outfile);
         }
 #endif
@@ -500,7 +500,7 @@ static int do_loop2(void)
  *   Calculate extra loops for running time of runSecs seconds per kernel     *
  ************************************************************************/
 
-             printf ("Calibrating part %ld of 3\n\n", section + 1);
+             printf ("Calibrating part %ld of 3\n\n", s_section + 1);
 
         do
         
@@ -514,7 +514,7 @@ static int do_loop2(void)
             count2 = 0;            
             for ( i=1; i<25; i++)
             {
-                 RunTime[section][i] = 0.0;
+                 RunTime[s_section][i] = 0.0;
             }
             start_time();
 
@@ -525,11 +525,11 @@ static int do_loop2(void)
             least = 1.0;
             for ( i=1; i<25; i++)
             {
-                if (RunTime[section][i] < 0.001)
+                if (RunTime[s_section][i] < 0.001)
                 {
                     least = 0.0;
-                    RunTime[section][i] = 0.0008;
-                    extra_loops[section][i] = extra_loops[section][i] * 2;
+                    RunTime[s_section][i] = 0.0008;
+                    extra_loops[s_section][i] = extra_loops[s_section][i] * 2;
                 }
             }
             printf ("Loop count %10ld %5.2f seconds\n", mult, pass_time);
@@ -558,14 +558,14 @@ static int do_loop2(void)
            are re-initialised. The time for initialising parameters is
            not included in the loop time. */
                              
-            extra_loops[section][i] = (long)(runSecs / RunTime[section][i]
-                                * (double)extra_loops[section][i] * lmult) +1;
-            RunTime[section][i] = 0.0;
+            extra_loops[s_section][i] = (long)(runSecs / RunTime[s_section][i]
+                                * (double)extra_loops[s_section][i] * lmult) +1;
+            RunTime[s_section][i] = 0.0;
         }
 
         mult = loop_passes;
         
-        printf ("\nLoops  200 x %2ld x Passes\n\n", mul[section]);
+        printf ("\nLoops  200 x %2ld x Passes\n\n", mul[s_section]);
         printf ("Kernel       Floating Pt ops\n");
         printf ("No  Passes E No    Total      Secs.  MFLOPS Span     "
                                         "Checksums          OK\n");
@@ -582,12 +582,12 @@ static int do_loop2(void)
         
         kernels();
 
-        maximum[section] = 0.0;
-        minimum[section] = Mflops[section][1];
-        average[section] = 0.0;
-        harmonic[section] = 0.0;
-        geometric[section] = 0.0;
-        xspan[section] = 0;
+        maximum[s_section] = 0.0;
+        minimum[s_section] = Mflops[s_section][1];
+        average[s_section] = 0.0;
+        harmonic[s_section] = 0.0;
+        geometric[s_section] = 0.0;
+        xspan[s_section] = 0;
 
 /************************************************************************
  *                        Calculate averages etc.                       *
@@ -595,27 +595,27 @@ static int do_loop2(void)
         
             for ( k=1 ; k<=24 ; k++ )
         {
-           average[section] = average[section] + Mflops[section][k];
-           harmonic[section] = harmonic[section] + 1 / Mflops[section][k];
+           average[s_section] = average[s_section] + Mflops[s_section][k];
+           harmonic[s_section] = harmonic[s_section] + 1 / Mflops[s_section][k];
 #ifdef NON_BAREMETAL
-           geometric[section] = geometric[section] + log(Mflops[section][k]);
+           geometric[s_section] = geometric[s_section] + log(Mflops[s_section][k]);
 #endif
-           xspan[section] = xspan[section] + nspan[section][k];
-           if (Mflops[section][k] < minimum[section])
+           xspan[s_section] = xspan[s_section] + nspan[s_section][k];
+           if (Mflops[s_section][k] < minimum[s_section])
            {
-               minimum[section] = Mflops[section][k];
+               minimum[s_section] = Mflops[s_section][k];
            }
-           if (Mflops[section][k] > maximum[section])
+           if (Mflops[s_section][k] > maximum[s_section])
            {
-               maximum[section] = Mflops[section][k];
+               maximum[s_section] = Mflops[s_section][k];
            }
         }
-        average[section] = average[section] / 24.0;
-        harmonic[section] = 24.0 / harmonic[section];
+        average[s_section] = average[s_section] / 24.0;
+        harmonic[s_section] = 24.0 / harmonic[s_section];
 #ifdef NON_BAREMETAL
-        geometric[section] = exp(geometric[section] / 24.0);
+        geometric[s_section] = exp(geometric[s_section] / 24.0);
 #endif
-        xspan[section] = xspan[section] / 24;
+        xspan[s_section] = xspan[s_section] / 24;
 
         if (pass > 0)
 
@@ -626,17 +626,17 @@ static int do_loop2(void)
         {
            printf ("\n");
            printf ("                     Maximum   Rate%8.2f \n",
-                                                  maximum[section]);
+                                                  maximum[s_section]);
            printf ("                     Average   Rate%8.2f \n",
-                                                  average[section]);
+                                                  average[s_section]);
            printf ("                     Geometric Mean%8.2f \n",
-                                                  geometric[section]);
+                                                  geometric[s_section]);
            printf ("                     Harmonic  Mean%8.2f \n",
-                                                  harmonic[section]);
+                                                  harmonic[s_section]);
            printf ("                     Minimum   Rate%8.2f \n\n",
-                                                  minimum[section]);
+                                                  minimum[s_section]);
            printf ("                     Do Span   %4ld\n\n",
-                                                  xspan[section]);
+                                                  xspan[s_section]);
         }        
     }
 
@@ -656,32 +656,36 @@ static int do_loop2(void)
  *     Calculate weighted averages for all Do Spans and display         *
  ************************************************************************/
     
-    for ( section=0 ; section<3 ; section++ )
+    for ( s_section=0 ; s_section<3 ; s_section++ )
     {
         for ( k=1 ; k<=24 ; k++ )
         {
-           average[3] = average[3] + weight[section]
-                                     * Mflops[section][k];
-           harmonic[3] = harmonic[3] + weight[section]
-                                     / Mflops[section][k];
-           geometric[3] = geometric[3] + weight[section]
-                                     * log(Mflops[section][k]);
-           xspan[3] = xspan[3] + (long)weight[section]
-                                     * nspan[section][k]; 
-           if (Mflops[section][k] < minimum[3])
+           average[3] = average[3] + weight[s_section]
+                                     * Mflops[s_section][k];
+           harmonic[3] = harmonic[3] + weight[s_section]
+                                     / Mflops[s_section][k];
+#ifdef NON_BAREMETAL
+           geometric[3] = geometric[3] + weight[s_section]
+                                     * log(Mflops[s_section][k]);
+#endif
+           xspan[3] = xspan[3] + (long)weight[s_section]
+                                     * nspan[s_section][k]; 
+           if (Mflops[s_section][k] < minimum[3])
            {
-               minimum[3] = Mflops[section][k];
+               minimum[3] = Mflops[s_section][k];
            }
-           if (Mflops[section][k] > maximum[3])
+           if (Mflops[s_section][k] > maximum[3])
            {
-               maximum[3] = Mflops[section][k];
+               maximum[3] = Mflops[s_section][k];
            }
         }
-        wt = wt + weight[section];
+        wt = wt + weight[s_section];
     }
     average[3] = average[3] / (24.0 * wt);
     harmonic[3] = 24.0 * wt / harmonic[3];
+#ifdef NON_BAREMETAL
     geometric[3] = exp(geometric[3] / (24.0 * wt));
+#endif
     xspan[3] = (long)((double)xspan[3] / (24.0 * wt));
 
     printf ("                Overall\n\n");
@@ -802,7 +806,7 @@ static void kernels(void)
   
    for ( k=0 ; k<25; k++)
     {
-        Checksum[section][k] = 0.0;
+        Checksum[s_section][k] = 0.0;
     }
    
     /*
@@ -1183,6 +1187,7 @@ static void kernels(void)
     
     parameters (15);
 
+#ifdef NON_BAREMETAL
     do
     {
         ng = 7;
@@ -1252,7 +1257,7 @@ static void kernels(void)
         endloop (15);
    }
    while (count < loop);
-
+#endif
     /*
      *******************************************************************
      *   Kernel 16 -- Monte Carlo search loop
@@ -1509,7 +1514,7 @@ l62:;
      */
 
     parameters (22);
-
+#ifdef NON_BAREMETAL
     expmax = 20.0;
     u[n-1] = 0.99*expmax*v[n-1];
     do
@@ -1522,7 +1527,7 @@ l62:;
         endloop (22);
     }
     while (count < loop);
-
+#endif
     /*
      *******************************************************************
      *   Kernel 23 -- 2-D implicit hydrodynamics fragment
@@ -1590,8 +1595,8 @@ static long endloop(long which)
  ************************************************************************/
       
      count2 = count2 + 1;
-     if (count2 == extra_loops[section][which]) getend = TRUE;
-     if (count2 == extra_loops[section][which] || runRel)
+     if (count2 == extra_loops[s_section][which]) getend = TRUE;
+     if (count2 == extra_loops[s_section][which] || runRel)
                           /* else re-initialise parameters if required */
      {
          reinit = FALSE;
@@ -1600,12 +1605,12 @@ static long endloop(long which)
  *           End of extra loops for runSecs seconds execution time            *
  ************************************************************************/
                         
-       Checksum[section][which] = 0;
+       Checksum[s_section][which] = 0;
        if (which == 1)
        {     
            for ( k=0 ; k<n ; k++ )
            {
-                Checksum[section][1] =  Checksum[section][1] + x[k]
+                Checksum[s_section][1] =  Checksum[s_section][1] + x[k]
                                           * (double)(k+1);
            }
            useflops = nflops * (double)(n * loop);
@@ -1614,21 +1619,21 @@ static long endloop(long which)
        {
           for ( k=0 ; k<n*2 ; k++ )
           {
-               Checksum[section][2] = Checksum[section][2] + x[k]
+               Checksum[s_section][2] = Checksum[s_section][2] + x[k]
                                          * (double)(k+1);
           }
           useflops = nflops * (double)((n-4) * loop);
        }
        if (which == 3)
        {
-           Checksum[section][3] = q;
+           Checksum[s_section][3] = q;
            useflops = nflops * (double)(n * loop);
        }
        if (which == 4)
        {
           for ( k=0 ; k<3 ; k++ )
           {
-                Checksum[section][4] = Checksum[section][4] + v[k]
+                Checksum[s_section][4] = Checksum[s_section][4] + v[k]
                                           * (double)(k+1);
           }
           useflops = nflops * (double) ((((n-5)/5)+1) * 3 * loop); 
@@ -1637,7 +1642,7 @@ static long endloop(long which)
        {
           for ( k=1 ; k<n ; k++ )
           {
-              Checksum[section][5] = Checksum[section][5] + x[k]
+              Checksum[s_section][5] = Checksum[s_section][5] + x[k]
                                         * (double)(k);
           }
           useflops = nflops * (double)((n-1) * loop);
@@ -1647,7 +1652,7 @@ static long endloop(long which)
           for ( k=0 ; k<n ; k++ )
           {
          
-             Checksum[section][6] = Checksum[section][6] + w[k]
+             Checksum[s_section][6] = Checksum[s_section][6] + w[k]
                                        * (double)(k+1);
          
           }
@@ -1657,7 +1662,7 @@ static long endloop(long which)
        {      
           for ( k=0 ; k<n ; k++ )
           {
-              Checksum[section][7] = Checksum[section][7] + x[k]
+              Checksum[s_section][7] = Checksum[s_section][7] + x[k]
                                         * (double)(k+1);
           }
           useflops = nflops * (double)(n * loop);
@@ -1673,7 +1678,7 @@ static long endloop(long which)
                       m = 101 * 5 * i + 5 * j + k + 1;
                       if (m < 10 * n + 1)
                       {
-                          Checksum[section][8] = Checksum[section][8]
+                          Checksum[s_section][8] = Checksum[s_section][8]
                                   + u1[i][j][k] * m
                                   + u2[i][j][k] * m + u3[i][j][k] * m;
                       }
@@ -1691,7 +1696,7 @@ static long endloop(long which)
                    m = 25 * i + j + 1;
                    if (m < 15 * n + 1)
                    {
-                       Checksum[section][9] = Checksum[section][9]
+                       Checksum[s_section][9] = Checksum[s_section][9]
                                              + px[i][j] * (double)(m);
                    }
                }
@@ -1707,7 +1712,7 @@ static long endloop(long which)
                    m = 25 * i + j + 1;
                    if (m < 15 * n + 1)
                    {
-                       Checksum[section][10] = Checksum[section][10]
+                       Checksum[s_section][10] = Checksum[s_section][10]
                                               + px[i][j] * (double)(m);
                    }                  
               }
@@ -1718,7 +1723,7 @@ static long endloop(long which)
        { 
            for ( k=1 ; k<n ; k++ )
            {
-                Checksum[section][11] = Checksum[section][11]
+                Checksum[s_section][11] = Checksum[s_section][11]
                                            + x[k] * (double)(k);
            }
            useflops = nflops * (double)((n - 1) * loop);
@@ -1727,7 +1732,7 @@ static long endloop(long which)
        { 
            for ( k=0 ; k<n-1 ; k++ )
            {
-                Checksum[section][12] = Checksum[section][12] + x[k]
+                Checksum[s_section][12] = Checksum[s_section][12] + x[k]
                                            * (double)(k+1);
            }
            useflops = nflops * (double)(n * loop);
@@ -1739,7 +1744,7 @@ static long endloop(long which)
              for ( j=0 ; j<4 ; j++ )    
               {
                   m = 4 * k + j + 1;
-                  Checksum[section][13] = Checksum[section][13]
+                  Checksum[s_section][13] = Checksum[s_section][13]
                                              + p[k][j]* (double)(m);
               }
           }
@@ -1750,7 +1755,7 @@ static long endloop(long which)
                   m = 64 * i + j + 1;
                   if (m < 8 * n + 1)
                   {
-                      Checksum[section][13] = Checksum[section][13]
+                      Checksum[s_section][13] = Checksum[s_section][13]
                                                   + h[i][j] * (double)(m);
                   }
               }
@@ -1761,12 +1766,12 @@ static long endloop(long which)
        {
           for ( k=0 ; k<n ; k++ )
           {
-                Checksum[section][14] = Checksum[section][14]
+                Checksum[s_section][14] = Checksum[s_section][14]
                                            + (xx[k] + vx[k]) * (double)(k+1);
           }
           for ( k=0 ; k<67 ; k++ )
           {
-              Checksum[section][14] = Checksum[section][14] + rh[k]
+              Checksum[s_section][14] = Checksum[s_section][14] + rh[k]
                                          * (double)(k+1);
           }
           useflops = nflops * (double)(n * loop);
@@ -1780,7 +1785,7 @@ static long endloop(long which)
                   m = 101 * j + k + 1;
                   if (m < n * 7 + 1)
                   {
-                      Checksum[section][15] = Checksum[section][15]
+                      Checksum[s_section][15] = Checksum[s_section][15]
                                        + (vs[j][k] + vy[j][k]) * (double)(m);
                   }
                }
@@ -1789,15 +1794,15 @@ static long endloop(long which)
        }
        if (which == 16)
        {
-           Checksum[section][16] =  (double)(k3 + k2 + j5 + m16);
+           Checksum[s_section][16] =  (double)(k3 + k2 + j5 + m16);
            useflops = (k2 + k2 + 10 * k3);
        }
        if (which == 17)
        {
-           Checksum[section][17] = xnm;
+           Checksum[s_section][17] = xnm;
            for ( k=0 ; k<n ; k++ )
            {
-               Checksum[section][17] = Checksum[section][17]
+               Checksum[s_section][17] = Checksum[s_section][17]
                                        + (vxne[k] + vxnd[k]) * (double)(k+1);
            }
            useflops = nflops * (double)(n * loop); 
@@ -1811,7 +1816,7 @@ static long endloop(long which)
                    m = 101 * k + j + 1;
                    if (m < 7 * n + 1)
                    {
-                       Checksum[section][18] = Checksum[section][18]
+                       Checksum[s_section][18] = Checksum[s_section][18]
                                         + (zz[k][j] + zr[k][j]) * (double)(m);
                    }
                }
@@ -1820,10 +1825,10 @@ static long endloop(long which)
        }
        if (which == 19)
        {
-          Checksum[section][19] = stb5;
+          Checksum[s_section][19] = stb5;
           for ( k=0 ; k<n ; k++ )
           {
-              Checksum[section][19] = Checksum[section][19] + b5[k]
+              Checksum[s_section][19] = Checksum[s_section][19] + b5[k]
                                          * (double)(k+1);
           }             
           useflops = nflops * (double)(n * loop);
@@ -1832,7 +1837,7 @@ static long endloop(long which)
        {
             for ( k=1 ; k<n+1 ; k++ )
             {
-                Checksum[section][20] = Checksum[section][20] + xx[k]
+                Checksum[s_section][20] = Checksum[s_section][20] + xx[k]
                                            * (double)(k);
             }
             useflops = nflops * (double)(n * loop);
@@ -1844,7 +1849,7 @@ static long endloop(long which)
                for ( i=0 ; i<25 ; i++ )
                {
                   m = 25 * k + i + 1;
-                  Checksum[section][21] = Checksum[section][21]
+                  Checksum[s_section][21] = Checksum[s_section][21]
                                              + px[k][i] * (double)(m);
                }
            }
@@ -1855,7 +1860,7 @@ static long endloop(long which)
        {
            for ( k=0 ; k<n ; k++ )
            {
-                Checksum[section][22] = Checksum[section][22] + w[k]
+                Checksum[s_section][22] = Checksum[s_section][22] + w[k]
                                            * (double)(k+1);
            }
            useflops = nflops * (double)(n * loop);      
@@ -1869,7 +1874,7 @@ static long endloop(long which)
                     m = 101 * j + k + 1;
                     if (m < 7 * n + 1)
                     {
-                         Checksum[section][23] = Checksum[section][23]
+                         Checksum[s_section][23] = Checksum[s_section][23]
                                                 + za[j][k] * (double)(m);
                     }
                 }
@@ -1878,7 +1883,7 @@ static long endloop(long which)
        }
        if (which == 24)
        {
-           Checksum[section][24] =  (double)(m24);
+           Checksum[s_section][24] =  (double)(m24);
            useflops = nflops * (double)((n - 1) * loop); 
        }
        if (runRel) checkOut(which);
@@ -1889,17 +1894,17 @@ static long endloop(long which)
  ************************************************************************/
           count2 = 0;    
           end_time();
-          RunTime[section][which] = secs;
+          RunTime[s_section][which] = secs;
 
 /************************************************************************
  *     Deduct overheads from time, calculate MFLOPS, display results    *
  ************************************************************************/
 
-          RunTime[section][which] = RunTime[section][which]
-                       - (loop * extra_loops[section][which]) * overhead_l;
-          FPops[section][which] =  useflops * extra_loops[section][which];   
-          Mflops[section][which] = FPops[section][which] / Scale
-                                            / RunTime[section][which];
+          RunTime[s_section][which] = RunTime[s_section][which]
+                       - (loop * extra_loops[s_section][which]) * overhead_l;
+          FPops[s_section][which] =  useflops * extra_loops[s_section][which];   
+          Mflops[s_section][which] = FPops[s_section][which] / Scale
+                                            / RunTime[s_section][which];
           if (pass > 0)
           {
 
@@ -1910,10 +1915,10 @@ static long endloop(long which)
              check(which);
            
              printf ("%2ld %3ld x%4ld %2ld %13.6e %5.2f%8.2f %4ld %22.15e %2ld\n",
-                  which, xloops[section][which], extra_loops[section][which],
-                  xflops[which], FPops[section][which], RunTime[section][which],
-                  Mflops[section][which], nspan[section][which],
-                  Checksum[section][which], accuracy[section][which]);
+                  which, xloops[s_section][which], extra_loops[s_section][which],
+                  xflops[which], FPops[s_section][which], RunTime[s_section][which],
+                  Mflops[s_section][which], nspan[s_section][which],
+                  Checksum[s_section][which], accuracy[s_section][which]);
              if (reliability)
              { 
                  if (compareFail)
@@ -2297,15 +2302,15 @@ static  void init(long which)
        double now = 1.0;
       
                            
-       n = nloops[section][which];
-       nspan[section][which] = n;
-       n16 = nloops[section][16];
+       n = nloops[s_section][which];
+       nspan[s_section][which] = n;
+       n16 = nloops[s_section][16];
        nflops = number_flops[which];
        xflops[which] = (long)nflops;
-       loop = lpass[section][which];
-       xloops[section][which] = loop;
+       loop = lpass[s_section][which];
+       xloops[s_section][which] = loop;
        loop = loop * mult;
-       MasterSum = sums[section][which];
+       MasterSum = sums[s_section][which];
        count = 0;
 
        init(which);
@@ -2328,21 +2333,23 @@ static  void init(long which)
    
 static   void check(long which)
    {
+
+#ifdef NON_BAREMETAL
         long maxs = 16;
         double xm, ym, re, min1, max1;
 
         xm = MasterSum;
-        ym = Checksum[section][which];
+        ym = Checksum[s_section][which];
       
        if (xm * ym < 0.0)
        {
-           accuracy[section][which] = 0;
+           accuracy[s_section][which] = 0;
        }
        else
        {
            if ( xm == ym)
            {
-               accuracy[section][which] = maxs;
+               accuracy[s_section][which] = maxs;
            }
            else
            {
@@ -2356,10 +2363,11 @@ static   void check(long which)
                    max1 = xm;
                }
                re = 1.0 - min1 / max1;
-               accuracy[section][which] =
+               accuracy[s_section][which] =
                                         (long)( fabs(log10(fabs(re))) + 0.5);
            }
        }
+#endif
 
        return;
    } 
@@ -2378,7 +2386,7 @@ static   void check(long which)
         nn = 1001;
         Mmin = 1;
         Mmax = 1001;
-        kk = seed[section];
+        kk = seed[s_section];
         
         inset= Mmin;
         span= Mmax - Mmin;
@@ -2677,7 +2685,7 @@ static void checkOut(int which)
 
     if (reliability)
     {
-        i = section;
+        i = s_section;
         j = which;
         if (count2 == 1)
         {
@@ -2742,3 +2750,15 @@ static void checkOut(int which)
     }   
 #endif
 }    
+static int do_loop(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
+{
+	do_loop2();;
+
+	return 0;
+}
+
+U_BOOT_CMD(
+	loop2,	2,	1,	do_loop,
+	"[iterations] - run loop2 benchmark",
+	"\n    - run the loop2 benchmark, a rough measure of CPU speed\n"
+);
