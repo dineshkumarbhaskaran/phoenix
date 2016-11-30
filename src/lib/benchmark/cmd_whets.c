@@ -178,6 +178,7 @@
 #include <string.h> 
 #include <stdlib.h>
 #include <math.h>
+#include "cpuidh.h"
 #else 
 #include <common.h>
 #include "cpuidh.h"
@@ -213,7 +214,7 @@ static SPDP Check;
 static SPDP results[9];
 
 #ifdef NON_BAREMETAL
-static int main(int flag, int argc, char * const argv[])
+int main(int flag, int argc, char * const argv[])
 #else 
 static int do_whets(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 #endif 
@@ -253,7 +254,7 @@ static int do_whets(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
     if (outfile == NULL) {
         printf ("Cannot open results file \n\n");
         printf ("Press Enter to exit\n");
-        i = getchar ();
+        int i = getchar ();
         exit (0);
     }
 #else 
@@ -343,7 +344,7 @@ static int do_whets(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
             fprintf (outfile, "  %9.3f           %9.3f\n",
                     loop_mflops[section], loop_time[section]);
         } else {
-            fprintf (outfile, "            %9.3f %9.3f\n", loop_mops[section],
+            fprintf (outfile, "            %9.3f %9.3f %9.3f\n", loop_mops[section],
                     loop_time[section], results[section]);
         }
     }

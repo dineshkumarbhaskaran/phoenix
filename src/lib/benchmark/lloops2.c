@@ -24,6 +24,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h> 
+#include <string.h>
 #include "cpuidh.h"
 #else
 #include <common.h>
@@ -343,7 +344,7 @@ static  void checkOut(int which);
 
               
 #ifdef NON_BAREMETAL              
-static int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 #else
 static int do_loop2(void)
 #endif
@@ -2749,7 +2750,9 @@ static void checkOut(int which)
         fprintf(outfile, "\n");
     }   
 #endif
-}    
+}
+
+#ifndef NON_BAREMETAL
 static int do_loop(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
 	do_loop2();;
@@ -2762,3 +2765,4 @@ U_BOOT_CMD(
 	"[iterations] - run loop2 benchmark",
 	"\n    - run the loop2 benchmark, a rough measure of CPU speed\n"
 );
+#endif 

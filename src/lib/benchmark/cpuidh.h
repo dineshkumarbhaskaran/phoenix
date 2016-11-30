@@ -18,6 +18,7 @@ extern int     CPUavail;
 
 
 void local_time(void);
+int getDetails(void);
 #else 
 extern double  start;
 extern double  end;
