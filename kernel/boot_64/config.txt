@@ -1,1 +1,6 @@
-kernel=Image
+kernel_old=1
+#arm_control=0x200
+disable_commandline_tags=1
+disable_overscan=1
+framebuffer_swap=0
+kernel=kernel8.img
