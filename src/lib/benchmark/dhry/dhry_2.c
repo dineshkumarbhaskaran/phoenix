@@ -16,6 +16,9 @@
   */
 
  #include "dhry.h"
+#ifdef NON_BAREMETAL
+#include <string.h>
+#endif
  
  #ifndef REG
  #define REG

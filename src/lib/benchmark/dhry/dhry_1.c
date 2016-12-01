@@ -27,14 +27,20 @@
  *
  *     #define options not used
  */
-
+#ifdef NON_BAREMETAL
+#include <stdio.h>
+#include <string.h> 
+#include <stdlib.h>
+#include "cpuidh.h"
+#include "dhry.h"
+#else
 #include <common.h>
 #include <malloc.h>
 #include <cpuidh.h>
 
 #include <linux/string.h>
 #include "dhry.h"
-
+#endif
  #ifdef CNNT
     #define options   "Non-optimised"
     #define opt "0"
@@ -123,7 +129,7 @@ int             Int_Glob;
    REG   int         Number_Of_Runs; 
 	 int         count = 10;
 #ifdef NON_BAREMETAL
-         int         endit, count = 10;
+         int         endit;
          FILE        *Ap;
          int         errors = 0;
          int         i;

@@ -1235,6 +1235,7 @@ function, references to m[i][j] are written m[ldm*i+j].  */
 } 
 
 
+#ifndef NON_BAREMETAL
 static int do_linpack(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
 	linpack_rpi();;
@@ -1247,3 +1248,4 @@ U_BOOT_CMD(
 	"[iterations] - run linpack benchmark",
 	"\n    - run the linpack benchmark, a rough measure of CPU speed\n"
 );
+#endif

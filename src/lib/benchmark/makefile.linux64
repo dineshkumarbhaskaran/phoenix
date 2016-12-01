@@ -4,13 +4,15 @@ CC=aarch64-linux-gnu-gcc
 WHETS_OBJS=cmd_whets.o cpuidc.o
 LLOOPS_OBJS=lloops.o cpuidc.o
 LLOOPS2_OBJS=lloops2.o cpuidc.o
+DHRY_OBJS=dhry/dhry_1.o dhry/dhry_2.o cpuidc.o
+LINPACK_OBJS=linpack.o cpuidc.o
 
-CFLAGS=-DNON_BAREMETAL
+CFLAGS=-DNON_BAREMETAL -I.
 
-all: whets.64 lloops.64 lloops2.64
+all: whets.64 lloops.64 lloops2.64 dhry.64 linpack.64
 
 clean: 
-	rm -f *.o 
+	rm -f *.o dhry/*.o *.64
 
 lloops2.64: $(LLOOPS2_OBJS)
 	$(CC) -o $@ $(LLOOPS2_OBJS) -lm
@@ -20,6 +22,12 @@ lloops.64: $(LLOOPS_OBJS)
 
 whets.64: $(WHETS_OBJS)
 	$(CC) -o $@ $(WHETS_OBJS)
+
+dhry.64: $(DHRY_OBJS)
+	$(CC) -o $@ $(DHRY_OBJS)
+
+linpack.64: $(LINPACK_OBJS)
+	$(CC) -o $@ $(LINPACK_OBJS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<

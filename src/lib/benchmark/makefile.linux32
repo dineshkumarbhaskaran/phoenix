@@ -4,13 +4,15 @@ CC=arm-linux-gnueabihf-gcc
 WHETS_OBJS=cmd_whets.o cpuidc.o
 LLOOPS_OBJS=lloops.o cpuidc.o
 LLOOPS2_OBJS=lloops2.o cpuidc.o
+DHRY_OBJS=dhry/dhry_1.o dhry/dhry_2.o cpuidc.o
+LINPACK_OBJS=linpack.o cpuidc.o
 
-CFLAGS=-DNON_BAREMETAL
+CFLAGS=-DNON_BAREMETAL -I.
 
-all: whets.32 lloops.32 lloops2.32
+all: whets.32 lloops.32 lloops2.32 dhry.32 linpack.32
 
 clean: 
-	rm -f *.o 
+	rm -f *.o dhry/*.o *.32
 
 lloops2.32: $(LLOOPS2_OBJS)
 	$(CC) -o $@ $(LLOOPS2_OBJS) -lm
@@ -20,6 +22,12 @@ lloops.32: $(LLOOPS_OBJS)
 
 whets.32: $(WHETS_OBJS)
 	$(CC) -o $@ $(WHETS_OBJS)
+
+dhry.32: $(DHRY_OBJS)
+	$(CC) -o $@ $(DHRY_OBJS)
+
+linpack.32: $(LINPACK_OBJS)
+	$(CC) -o $@ $(LINPACK_OBJS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<
