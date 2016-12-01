@@ -30,6 +30,7 @@
 
 #include <common.h>
 #include <malloc.h>
+#include <cpuidh.h>
 
 #include <linux/string.h>
 #include "dhry.h"
@@ -92,10 +93,6 @@ int             Int_Glob;
  #define Too_Small_Time 2
                  /* Measurements should last at least 2 seconds */
  
-ulong           Begin_Time,
-                End_Time;
- double         User_Time;
- 
  double          Microseconds,
                  Dhrystones_Per_Second,
                  Vax_Mips;
@@ -103,9 +100,12 @@ ulong           Begin_Time,
  /* end of variables for time measurement */
  
  
-// void main (int argc, char *argv[])
+#ifdef NON_BAREMETAL
+ void main (int argc, char *argv[])
+#else
    void dhry (int iterations)
-/*FILE_USE : Cmnt :Added for time being, though iterations is not used*/
+#endif
+/*NON_BAREMETAL : Cmnt :Added for time being, though iterations is not used*/
  /*****/
  
    /* main program, corresponds to procedures        */
@@ -122,7 +122,7 @@ ulong           Begin_Time,
    REG   int         Run_Index;
    REG   int         Number_Of_Runs; 
 	 int         count = 10;
-#ifdef FILE_USE
+#ifdef NON_BAREMETAL
          int         endit, count = 10;
          FILE        *Ap;
          int         errors = 0;
@@ -172,7 +172,7 @@ ulong           Begin_Time,
          /* Warning: With 16-Bit processors and Number_Of_Runs > 32000, */
          /* overflow may occur for this array element.                  */
  
-#ifdef FILE_USE 
+#ifdef NON_BAREMETAL 
     getDetails();
 #endif
 
@@ -204,7 +204,7 @@ ulong           Begin_Time,
        /* Start timer */
        /***************/
   
-  Begin_Time= get_timer(0);
+       start_time ();
    
        for (Run_Index = 1; Run_Index <= Number_Of_Runs; ++Run_Index)
        {
@@ -256,17 +256,16 @@ ulong           Begin_Time,
        /* Stop timer */
        /**************/
  
-       End_Time = get_timer(Begin_Time);
-       User_Time = End_Time/1000;
+       end_time ();
              
-       printf ("%12.0f runs %6.2f seconds \n",(double) Number_Of_Runs, User_Time);
-       if (User_Time > 2)
+       printf ("%12.0f runs %6.2f seconds \n",(double) Number_Of_Runs, secs);
+       if (secs > 2)
        {
              count = 0;
        }
        else
        {
-             if (User_Time < 0.05)
+             if (secs < 0.05)
              {
                   Number_Of_Runs = Number_Of_Runs * 5;
              }
@@ -405,7 +404,7 @@ ulong           Begin_Time,
    printf ("\n");
     
  
-   if (User_Time < Too_Small_Time)
+   if (secs < Too_Small_Time)
    {
      printf ("Measured time too small to obtain meaningful results\n");
      printf ("Please increase number of runs\n");
@@ -413,15 +412,15 @@ ulong           Begin_Time,
    }
    else
    {
-#ifdef FILE_USE
+#ifdef NON_BAREMETAL
      printf ("\nFrom File /proc/cpuinfo\n");
      printf("%s\n", configdata[0]);
      printf ("\nFrom File /proc/version\n");
      printf("%s\n\n", configdata[1]);
 #endif
-     Microseconds = User_Time * Mic_secs_Per_Second 
+     Microseconds = secs * Mic_secs_Per_Second 
                          / (double) Number_Of_Runs;
-     Dhrystones_Per_Second = (double) Number_Of_Runs / User_Time;
+     Dhrystones_Per_Second = (double) Number_Of_Runs / secs;
      Vax_Mips = Dhrystones_Per_Second / 1757.0;
  
      printf ("Nanoseconds one Dhrystone run: %12.2lf\n", Microseconds * 1000);
@@ -430,7 +429,7 @@ ulong           Begin_Time,
      printf ("\n");
 
 
-#ifdef FILE_USE 
+#ifdef NON_BAREMETAL 
 /************************************************************************
  *                Add results to output file Dhry.txt                   *
  ************************************************************************/
@@ -561,7 +560,7 @@ ulong           Begin_Time,
                  
 #endif
    }
-#ifdef FILE_USE
+#ifdef NON_BAREMETAL
     if (nopause)
     {
       char moredata[1024];

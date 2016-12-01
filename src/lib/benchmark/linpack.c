@@ -76,9 +76,8 @@
 
 #define NTIMES 10
 
-#define BARE_METAL
 
-#ifndef BARE_METAL
+#ifdef NON_BAREMETAL
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -104,13 +103,15 @@ REAL ddot (int n, REAL dx[], int incx, REAL dy[], int incy);
 static REAL atime[9][15];
 double runSecs = 1;
 
-#ifdef BARE_METAL
+#ifndef NON_BAREMETAL
 #define fprintf(a,b,c) printf(b,c)
 //#define fprinf(a,b,c,d,e,f,g,h) printf(b,c,d,e,f,g,h)
 #endif
-
-//main (int argc, char *argv[])
+#ifdef NON_BAREMETAL
+int main (int argc, char *argv[])
+#else
 void linpack_rpi(void)
+#endif
 {
         static REAL aa[200*200],a[200*201],b[200],x[200];       
         REAL cray,ops,total,norma,normx;
@@ -119,7 +120,7 @@ void linpack_rpi(void)
         int pass, loop;
         static int ipvt[200],n,i,j,ntimes,info,lda,ldaa;
         REAL overhead1, overhead2, time2;
-#ifndef   BARE_METAL
+#ifdef   NON_BAREMETAL
         int endit; 
         REAL max1, max2;
         char was[5][20];
@@ -459,7 +460,7 @@ void linpack_rpi(void)
         atime[3][12] = atime[3][12] / 5.0; 
         fprintf (stderr,"Average                          %11.2f\n\n",
                                               (double)atime[3][12]);  
-#ifndef BARE_METAL
+#ifdef NON_BAREMETAL
         printf("##########################################\n"); 
         printf ("\nFrom File /proc/cpuinfo\n");
         printf("%s\n", configdata[0]);
@@ -478,7 +479,7 @@ void linpack_rpi(void)
         fprintf(stderr, "%s ", PREC);
         fprintf(stderr," Precision %11.2f Mflops \n\n",mflops);
 
-#ifndef BARE_METAL
+#ifdef NON_BAREMETAL
         local_time();
 
 
