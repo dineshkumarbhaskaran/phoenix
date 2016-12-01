@@ -32,27 +32,20 @@ The ARM architecture is a Reduced Instruction Set Computer (RISC) architecture. 
 
 In AArch64 this is extended to provide 64 bit virtual addressing for 48 bit physical addressing.  Both AArch32 and AArch64 are 32 bit fixed length instruction set.  The AARch64 instruction set has been designed from scratch.  It operates on 64-bit or 32-bit data types and registers.  Neon now supports double-precision floating point and hardware divide support is included.  AArch64 doesnot support the shift and rotate operations in data processing instructions,  but it is still possible to shift, rotate the second operand.
 
+\subsection{Register Set in AARch64}
 AArch64 has 31 general purpose registers, all 64 bit.  These registers can be accessed by most instructions as 64 bit double words or as 32bit words.  All the registers can be accessed as 64-bit registers x0 - x30 or 32-bit sub registers w0 - w30.  If a register is written as 32-bit word, then the top half of the register is cleared.  All the base pointer registers are 64 bit to support 64 bit virtual addressing.  There are 32 registers for SIMD and Floating Point, all 128 bit wide.  These registers map differently than the earlier ARM architectures. Each AArch64 64-bit general-purpose register (X0-X30) also has a 32-bit (W0-W30) form.
-In earlier ARM architectures, the register set looks like this
-\begin{figure}
-    \centering
-    \includegraphics[width=3.0in]{./figures/oldReg}
-    \caption{Register mappings as seen in ARMv7}
-    \label{oldRegfigure}
-\end{figure}
-
-In AArch64, the register mapping has changed to this
 
 \begin{figure}
-    \centering
-    \includegraphics[width=3.0in]{./figures/newReg}
-    \caption{Register mappings as seen in ARMv8}
-    \label{newRegfigure}
+	\centering
+    \includegraphics[width=3.0in]{./figures/reg.eps}
+    \caption{Register mappings in ARMv7 and ARMv8.}
+    \label{fig:Regfig}
 \end{figure}
 
-
+In earlier ARM architectures, the register set looked as shown in Fig \ref{fig:Regfig}(a). In AArch64, the register mapping has changed as shown in Fig \ref{fig:Regfig}(b).
 The Program Counter (PC) can't be read or modified directly, unlike the other general registers.
 
+\subsection{Execution States in ARMv8-A}
 A fully populated ARMv8-A supports both AArch32 and AArch64 execution states. The transition between two states happens through exception boundary.  This is different than in ARMv7 where execution state changes from 32 bit instructions to 16 bit thumb instructions through interworking branch instruction(e.g. BLX). While taking or returning an exception, the execution state can change from 32 bit to 64 bit or vice versa.
 
 \subsection{Subsection Heading Here}
