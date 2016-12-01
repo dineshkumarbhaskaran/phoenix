@@ -1,0 +1,37 @@
+ ########################################################
+
+ Linpack Double Precision Unrolled Benchmark n @ 100
+ Optimisation vfpv4 32 Bit, Sat May 21 22:33:51 2016
+
+ Speed     172.41 MFLOPS
+
+ Variable norm. resid Non-standard result was              1.9 instead of              1.7
+ Variable resid       Non-standard result was   8.46778499e-14 instead of   7.41628980e-14
+ Variable x[0]-1      Non-standard result was  -1.11799459e-13 instead of  -1.49880108e-14
+ Variable x[n-1]-1    Non-standard result was  -9.60342916e-14 instead of  -1.89848137e-14
+
+ Compiler #define or values in linpack.c might need to be changed
+
+ ########################################################
+
+
+SYSTEM INFORMATION
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+ 
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+ 
+
+Additional information - 
+

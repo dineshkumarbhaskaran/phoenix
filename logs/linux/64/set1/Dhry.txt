@@ -1,0 +1,32 @@
+ #####################################################
+
+ Dhrystone Benchmark 2.1 A7 32 Bit, Sat May 21 22:33:23 2016
+
+ Nanoseconds one Dhrystone run:       177.79
+ Dhrystones per Second:              5624550
+ VAX MIPS rating =                   3201.22
+
+ Numeric results were correct
+
+ #####################################################
+
+SYSTEM INFORMATION
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+ 
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+ 
+
+Additional information - 
+

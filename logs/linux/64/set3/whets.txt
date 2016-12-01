@@ -1,21 +1,21 @@
 
 ##############################################
 
-Whetstone Single Precision C Benchmark  vfpv4 32 Bit, Sat May 21 22:32:52 2016
+Whetstone Single Precision C Benchmark  vfpv4 32 Bit, Sat May 21 22:40:23 2016
 
 
 Loop content                   Result              MFLOPS      MOPS   Seconds
 
-N1 floating point      -1.12475013732910156       200.606               0.063
-N2 floating point      -1.12274742126464844       108.603               0.811
-N3 if then else         1.00000000000000000                 157.268     0.431     1.000
-N4 fixed point         12.00000000000000000                 150.439     1.371    12.000
+N1 floating point      -1.12475013732910156       315.302               0.207
+N2 floating point      -1.12274742126464844       290.553               1.574
+N3 if then else         1.00000000000000000                1153.308     0.305     1.000
+N4 fixed point         12.00000000000000000                1441.627     0.743    12.000
        0.00000000000000000                   0.000     0.000     0.000
-N6 floating point       0.99999982118606567        69.164               5.108
-N7 assignments          3.00000000000000000                  54.926     2.204     3.000
+N6 floating point       0.99999982118606567       276.826               6.629
+N7 assignments          3.00000000000000000                1153.356     0.545     3.000
        0.00000000000000000                   0.000     0.000     0.000
 
-MWIPS                                             655.798               9.988
+MWIPS                                            3400.843              10.003
 
 SYSTEM INFORMATION
 
@@ -40,21 +40,21 @@ Additional information -
 
 ##############################################
 
-Whetstone Single Precision C Benchmark  vfpv4 32 Bit, Sat May 21 22:33:37 2016
+Whetstone Single Precision C Benchmark  vfpv4 32 Bit, Sat May 21 22:44:40 2016
 
 
 Loop content                   Result              MFLOPS      MOPS   Seconds
 
-N1 floating point      -1.12475013732910156       200.502               0.063
-N2 floating point      -1.12274742126464844       108.509               0.811
-N3 if then else         1.00000000000000000                 157.162     0.431     1.000
-N4 fixed point         12.00000000000000000                 150.398     1.372    12.000
+N1 floating point      -1.12475013732910156       316.661               0.206
+N2 floating point      -1.12274742126464844       290.541               1.574
+N3 if then else         1.00000000000000000                1153.299     0.305     1.000
+N4 fixed point         12.00000000000000000                1441.880     0.743    12.000
        0.00000000000000000                   0.000     0.000     0.000
-N6 floating point       0.99999982118606567        69.178               5.107
-N7 assignments          3.00000000000000000                  54.922     2.204     3.000
+N6 floating point       0.99999982118606567       276.815               6.629
+N7 assignments          3.00000000000000000                1152.979     0.545     3.000
        0.00000000000000000                   0.000     0.000     0.000
 
-MWIPS                                             655.760               9.988
+MWIPS                                            3401.016              10.003
 
 SYSTEM INFORMATION
 
@@ -74,5 +74,5 @@ From File /proc/version
 Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
  
 
-Additional information - mv log log.whets
+Additional information - 
 

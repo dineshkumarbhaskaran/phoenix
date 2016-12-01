@@ -1,0 +1,69 @@
+ #####################################################
+
+ Livermore Loops Benchmark vfpv4 32 Bit via C/C++ Sat May 21 22:34:39 2016
+
+ #####################################################
+
+ Livermore Loops Benchmark vfpv4 32 Bit via C/C++ Sat May 21 22:34:55 2016
+
+ MFLOPS for 24 loops
+  238.1  237.6  480.7  394.8  158.4  166.7  294.1  446.4  416.3  224.2  171.6  133.4
+  101.0   99.7  227.4  172.5  364.9  274.9  239.9  252.5  125.8   55.4  289.2   92.3
+
+ Overall Ratings
+ Maximum Average Geomean Harmean Minimum
+   536.9   237.5   208.7   179.0    55.4
+
+ Numeric results were as expected
+
+ ########################################################
+
+
+SYSTEM INFORMATION
+
+From File /proc/cpuinfo
+processor	: 0
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 1
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 2
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 3
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU vLinux version 4.8.11-v7 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 22:11:34 IST 2016
+ 
+
+From File /proc/version
+Linux version 4.8.11-v7 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 22:11:34 IST 2016
+ 
+
+Additional information - 
+

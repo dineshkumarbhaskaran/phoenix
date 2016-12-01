@@ -1,0 +1,67 @@
+
+##############################################
+
+Whetstone Single Precision C Benchmark  vfpv4 32 Bit, Sat May 21 22:41:01 2016
+
+
+Loop content                   Result              MFLOPS      MOPS   Seconds
+
+N1 floating point      -1.12475013732910156       336.517               0.209
+N2 floating point      -1.12274742126464844       302.029               1.634
+N3 if then else         1.00000000000000000                1797.974     0.211     1.000
+N4 fixed point         12.00000000000000000                1498.686     0.772    12.000
+       0.00000000000000000                   0.000     0.000     0.000
+N6 floating point       0.99999982118606567       299.720               6.607
+N7 assignments          3.00000000000000000                1198.736     0.566     3.000
+       0.00000000000000000                   0.000     0.000     0.000
+
+MWIPS                                            3671.563               9.998
+
+SYSTEM INFORMATION
+
+From File /proc/cpuinfo
+processor	: 0
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 1
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 2
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 3
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU vLinux version 4.8.11-v7 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 22:11:34 IST 2016
+ 
+
+From File /proc/version
+Linux version 4.8.11-v7 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 22:11:34 IST 2016
+ 
+
+Additional information - 
+

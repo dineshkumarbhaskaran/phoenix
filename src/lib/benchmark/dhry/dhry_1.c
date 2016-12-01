@@ -153,7 +153,9 @@ int             Int_Glob;
      {
         printf(" Can not open Dhry.txt\n\n");
         printf(" Press Enter\n\n");
+#if 0
         int g = getchar();
+#endif 
         exit(1);
      }
 #endif
@@ -566,16 +568,7 @@ int             Int_Glob;
                  
 #endif
    }
-#ifdef NON_BAREMETAL
-    if (nopause)
-    {
-      char moredata[1024];
-      printf("Type additional information to include in Dhry.txt - Press Enter\n");
-      if (fgets (moredata, sizeof(moredata), stdin) != NULL)
-             fprintf (Ap, "Additional information - %s\n", moredata);
-    }
     fclose(Ap);
-#endif
  }
  
  void Proc_1 (REG Rec_Pointer Ptr_Val_Par)

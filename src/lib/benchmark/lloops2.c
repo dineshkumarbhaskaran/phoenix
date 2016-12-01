@@ -771,13 +771,6 @@ static int do_loop2(void)
     
     printf ("\n");
 
-    if (nopause)
-    {
-         char moredata[1024];
-         printf("Type additional information to include in linpack.txt - Press Enter\n");
-         if (fgets (moredata, sizeof(moredata), stdin) != NULL)
-         fprintf (outfile, "Additional information - %s\n", moredata);
-    }
     fclose (outfile);
 #endif
     return 0;

@@ -151,8 +151,10 @@ void linpack_rpi(void)
         if (outfile == NULL)
         {
             printf (" Cannot open results file \n\n");
+#if 0
             printf(" Press Enter\n\n");
             int g = getchar();
+#endif 
             exit (0);
         }
                      
@@ -555,13 +557,6 @@ void linpack_rpi(void)
     
     printf ("\n");
 
-    if (nopause)
-    {
-         char moredata[1024];
-         printf("Type additional information to include in linpack.txt - Press Enter\n");
-         if (fgets (moredata, sizeof(moredata), stdin) != NULL)
-         fprintf (outfile, "Additional information - %s\n", moredata);
-    }
     fclose (outfile);
 #endif
 }

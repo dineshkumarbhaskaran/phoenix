@@ -367,7 +367,6 @@ static int do_loop(void)
     long   xspan[4];
     long   which;
 #ifdef NON_BAREMETAL              
-    double now = 1.0;
     long   Endit;
     char   general[9][80] = {" "};
     int    param;
@@ -782,13 +781,6 @@ static int do_loop(void)
     
     printf ("\n");
 
-    if (nopause)
-    {
-         char moredata[1024];
-         printf("Type additional information to include in LLloops.txt - Press Enter\n");
-         if (fgets (moredata, sizeof(moredata), stdin) != NULL)
-         fprintf (outfile, "Additional information - %s\n", moredata);
-    }
     fclose (outfile);
 #endif
     return 0;
@@ -1594,7 +1586,7 @@ l62:;
  
 static long endloop(long which)
 {
-  double now = 1.0, useflops;
+  double useflops;
   long   i, j, k, m;
   double Scale = 1000000.0;
   Boolean  reinit = TRUE;
@@ -2297,8 +2289,6 @@ static void init(long which)
        double number_flops[25] = {0, 5., 4., 2., 2., 2., 2., 16., 36., 17.,
                                       9., 1., 1., 7., 11., 33.,10., 9., 44.,
                                       6., 26., 2., 17., 11., 1.};
-       double now = 1.0;
-      
                            
        n = nloops[s_section][which];
        nspan[s_section][which] = n;

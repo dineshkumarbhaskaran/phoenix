@@ -1,0 +1,365 @@
+Script started on Sat 21 May 2016 10:32:53 PM UTC
+root@linaro-developer:~# ./dhry.64 && llo[K[K[K./linpack.64 && ./lloops2.64 && whets.64[C.whets.64/whets.64
+##########################################
+
+Dhrystone Benchmark, Version 2.1 (Language: C or C++)
+
+Optimisation    A7 32 Bit
+Register option not selected
+
+       10000 runs   0.00 seconds 
+      100000 runs   0.06 seconds 
+      200000 runs   0.07 seconds 
+      400000 runs   0.13 seconds 
+      800000 runs   0.14 seconds 
+     1600000 runs   0.28 seconds 
+     3200000 runs   0.57 seconds 
+     6400000 runs   1.14 seconds 
+    12800000 runs   2.28 seconds 
+
+Final values (* implementation-dependent):
+
+Int_Glob:      O.K.  5  Bool_Glob:     O.K.  1
+Ch_1_Glob:     O.K.  A  Ch_2_Glob:     O.K.  B
+Arr_1_Glob[8]: O.K.  7  Arr_2_Glob8/7: O.K.    12800010
+Ptr_Glob->              Ptr_Comp:       *    721597008
+  Discr:       O.K.  0  Enum_Comp:     O.K.  2
+  Int_Comp:    O.K.  17 Str_Comp:      O.K.  DHRYSTONE PROGRAM, SOME STRING
+Next_Ptr_Glob->         Ptr_Comp:       *    721597008 same as above
+  Discr:       O.K.  0  Enum_Comp:     O.K.  1
+  Int_Comp:    O.K.  18 Str_Comp:      O.K.  DHRYSTONE PROGRAM, SOME STRING
+Int_1_Loc:     O.K.  5  Int_2_Loc:     O.K.  13
+Int_3_Loc:     O.K.  7  Enum_Loc:      O.K.  1  
+Str_1_Loc:                             O.K.  DHRYSTONE PROGRAM, 1'ST STRING
+Str_2_Loc:                             O.K.  DHRYSTONE PROGRAM, 2'ND STRING
+
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+
+
+Nanoseconds one Dhrystone run:       177.79
+Dhrystones per Second:              5624550
+VAX  MIPS rating =                  3201.22
+
+Type additional information to include in Dhry.txt - Press Enter
+
+
+##########################################
+Unrolled Double Precision Linpack Benchmark - Linux Version in 'C/C++'
+
+Optimisation vfpv4 32 Bit
+
+norm resid      resid           machep         x[0]-1          x[n-1]-1
+   1.9    8.46778499e-14   2.22044605e-16  -1.11799459e-13  -9.60342916e-14
+
+Times are reported for matrices of order          100
+1 pass times for array with leading dimension of  201
+
+      dgefa      dgesl      total     Mflops       unit      ratio
+    0.01214    0.00429    0.01643      41.79     0.0479     0.2934
+
+Calculating matgen overhead
+        10 times   0.01 seconds
+       100 times   0.11 seconds
+       200 times   0.07 seconds
+      2000 times   0.60 seconds
+      4000 times   1.20 seconds
+Overhead for 1 matgen      0.00030 seconds
+
+Calculating matgen/dgefa passes for 1 seconds
+        10 times   0.05 seconds
+       100 times   0.42 seconds
+       200 times   0.83 seconds
+       400 times   1.67 seconds
+Passes used        240 
+
+Times for array with leading dimension of 201
+
+      dgefa      dgesl      total     Mflops       unit      ratio
+    0.00391    0.00012    0.00403     170.38     0.0117     0.0720
+    0.00386    0.00012    0.00398     172.40     0.0116     0.0711
+    0.00386    0.00012    0.00398     172.35     0.0116     0.0711
+    0.00386    0.00012    0.00398     172.41     0.0116     0.0711
+    0.00386    0.00012    0.00398     172.37     0.0116     0.0711
+Average                               171.98
+
+Calculating matgen2 overhead
+Overhead for 1 matgen      0.00030 seconds
+
+Times for array with leading dimension of 200
+
+      dgefa      dgesl      total     Mflops       unit      ratio
+    0.00387    0.00012    0.00399     171.92     0.0116     0.0713
+    0.00385    0.00012    0.00397     173.10     0.0116     0.0708
+    0.00385    0.00012    0.00397     173.06     0.0116     0.0709
+    0.00385    0.00012    0.00397     173.09     0.0116     0.0708
+    0.00385    0.00012    0.00397     173.06     0.0116     0.0709
+Average                               172.85
+
+##########################################
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+
+
+Unrolled Double  Precision      171.98 Mflops 
+
+ Different numeric results - see linpack.txt
+
+
+Type additional information to include in linpack.txt - Press Enter
+
+L.L.N.L. 'C' KERNELS: MFLOPS   P.C.  VERSION 4.0
+
+Optimisation  vfpv4 32 Bit
+
+Calculating outer loop overhead
+      1000 times   0.00 seconds
+     10000 times   0.00 seconds
+    100000 times   0.01 seconds
+   1000000 times   0.09 seconds
+   2000000 times   0.13 seconds
+   4000000 times   0.17 seconds
+   8000000 times   0.26 seconds
+Overhead for each loop   3.2083e-08 seconds
+
+##########################################
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+
+Calibrating part 1 of 3
+
+Loop count          4  0.00 seconds
+Loop count         16  0.00 seconds
+
+Loops  200 x  1 x Passes
+
+Kernel       Floating Pt ops
+No  Passes E No    Total      Secs.  MFLOPS Span     Checksums          OK
+------------ -- ------------- ----- ------- ---- ---------------------- --
+ 1   7 x  39  5  2.732730e+08  1.01  270.02 1001  5.114652693224706e+04 14
+ 2  67 x  45  4  2.339640e+08  0.99  237.19  101  1.539721811668517e+03 13
+ 3   9 x 126  2  4.540536e+08  0.99  458.64 1001  1.000742883066638e+01 13
+ 4  14 x 135  2  4.536000e+08  1.01  450.13 1001  5.999250595474085e-01 13
+ 5  10 x  44  2  1.760000e+08  1.00  176.52 1001  4.548871642388626e+03 13
+ 6   3 x  73  2  1.737984e+08  0.98  176.65   64  4.375116344743195e+03 12
+ 7   4 x  30 16  3.820800e+08  1.01  377.72  995  6.104251075174966e+04 13
+ 8  10 x  31 36  4.419360e+08  1.01  437.77  100  1.501268005627156e+05 12
+ 9  36 x  33 17  4.079592e+08  0.99  411.42  101  1.189443609975093e+05 13
+10  34 x  35  9  2.163420e+08  1.01  213.90  101  7.310369784326026e+04 13
+11  11 x  75  1  1.650000e+08  1.01  164.17 1001  3.342910972650561e+07 13
+12  12 x  60  1  1.440000e+08  1.00  143.71 1000  2.907141430413818e-05  7
+13  36 x  33  7  1.064448e+08  1.00  106.73   64  1.202533961843101e+11 13
+14   2 x  27 11  1.189188e+08  0.99  120.04 1001  3.165553044001662e+09 12
+15   1 x  67 33  2.211000e+08  0.99  223.60  101  3.943816690352320e+04 13
+16  25 x  88 10  2.332000e+08  1.00  233.27   75  5.650760000000000e+05 16
+17  35 x  57  9  3.626910e+08  0.98  371.66  101  1.114641772903101e+03 12
+18   2 x  35 44  3.049200e+08  1.01  300.60  100  1.015727037502806e+05 12
+19  39 x  60  6  2.836080e+08  1.00  284.49  101  5.421816960150430e+02 12
+20   1 x  45 26  2.340000e+08  1.00  233.12 1000  3.040644339316555e+07 11
+21   1 x   8  2  2.020000e+08  1.08  187.88  101  1.597308280710891e+08 12
+22  11 x  14 17  5.288360e+07  1.01   52.11  101  2.938604376567126e+02 13
+23   8 x  32 11  2.787840e+08  1.00  279.23  100  3.549900501566212e+04 12
+24   5 x 126  1  1.260000e+08  0.99  127.79 1001  5.000000000000000e+02 16
+
+                     Maximum   Rate  458.64 
+                     Average   Rate  251.60 
+                     Geometric Mean  223.63 
+                     Harmonic  Mean  192.10 
+                     Minimum   Rate   52.11 
+
+                     Do Span    471
+
+Calibrating part 2 of 3
+
+Loop count          8  0.00 seconds
+Loop count         32  0.00 seconds
+
+Loops  200 x  2 x Passes
+
+Kernel       Floating Pt ops
+No  Passes E No    Total      Secs.  MFLOPS Span     Checksums          OK
+------------ -- ------------- ----- ------- ---- ---------------------- --
+ 1  40 x  34  5  2.747200e+08  1.03  267.94  101  5.253344778938003e+02 14
+ 2  40 x  38  4  2.359040e+08  0.99  237.34  101  1.539721811668517e+03 13
+ 3  53 x 103  2  4.410872e+08  1.00  442.63  101  1.009741436579204e+00 13
+ 4  70 x 110  2  3.696000e+08  1.00  371.32  101  5.999250595474085e-01 13
+ 5  55 x  40  2  1.760000e+08  1.01  175.06  101  4.589031939602207e+01 13
+ 6   7 x  63  2  1.693440e+08  0.99  171.06   32  8.631675645346178e+01 12
+ 7  22 x  27 16  3.839616e+08  1.00  382.91  101  6.345586315784155e+02 14
+ 8   6 x  26 36  4.447872e+08  1.02  438.14  100  1.501268005627156e+05 12
+ 9  21 x  29 17  4.182612e+08  1.02  411.05  101  1.189443609975093e+05 13
+10  19 x  31  9  2.141604e+08  0.99  215.66  101  7.310369784326026e+04 13
+11  64 x  62  1  1.587200e+08  0.99  160.51  101  3.433560407476189e+04 13
+12  68 x  52  1  1.414400e+08  1.00  141.43  100  7.127569149598112e-06  9
+13  41 x  29  7  1.065344e+08  1.01  105.72   32  9.816387817138161e+10  9
+14  10 x  29 11  1.288760e+08  1.01  126.98  101  3.039983465147589e+07 12
+15   1 x  34 33  2.244000e+08  1.01  221.71  101  3.943816690352320e+04 13
+16  27 x  74 10  2.237760e+08  1.00  222.80   40  6.480410000000000e+05 16
+17  20 x  51  9  3.708720e+08  1.00  371.56  101  1.114641772903101e+03 12
+18   1 x  35 44  3.049200e+08  1.01  300.96  100  1.015727037502806e+05 12
+19  23 x  51  6  2.843352e+08  1.00  284.40  101  5.421816960150430e+02 12
+20   8 x  29 26  2.412800e+08  0.99  243.16  100  3.126205178810911e+04 12
+21   1 x   9  2  2.250000e+08  1.12  201.77   50  7.824524877235301e+07 12
+22   7 x  11 17  5.288360e+07  1.01   52.14  101  2.938604376567126e+02 13
+23   5 x  26 11  2.831400e+08  1.01  279.19  100  3.549900501566212e+04 12
+24  31 x 101  1  1.252400e+08  1.00  125.40  101  5.000000000000000e+01 16
+
+                     Maximum   Rate  442.63 
+                     Average   Rate  247.95 
+                     Geometric Mean  221.74 
+                     Harmonic  Mean  191.40 
+                     Minimum   Rate   52.14 
+
+                     Do Span     90
+
+Calibrating part 3 of 3
+
+Loop count         32  0.00 seconds
+Loop count        128  0.00 seconds
+
+Loops  200 x  8 x Passes
+
+Kernel       Floating Pt ops
+No  Passes E No    Total      Secs.  MFLOPS Span     Checksums          OK
+------------ -- ------------- ----- ------- ---- ---------------------- --
+ 1  28 x  44  5  2.661120e+08  1.01  262.39   27  3.855104502494985e+01 14
+ 2  46 x  64  4  2.072576e+08  1.00  206.62   15  3.953296986903406e+01 13
+ 3  37 x 125  2  3.996000e+08  1.00  398.43   27  2.699309089321338e-01 13
+ 4  38 x 134  2  2.444160e+08  0.97  250.78   27  5.999250595474085e-01 13
+ 5  40 x  51  2  1.697280e+08  1.00  169.25   27  3.182615248448323e+00 13
+ 6  21 x  78  2  1.257984e+08  0.98  129.01    8  1.120309393467610e+00 12
+ 7  20 x  36 16  3.870720e+08  1.02  378.19   21  2.845720217644064e+01 14
+ 8   9 x  32 36  4.313088e+08  1.02  423.94   14  2.960543667877653e+03 12
+ 9  26 x  38 17  4.031040e+08  1.00  401.93   15  2.623968460874436e+03 13
+10  25 x  40  9  2.160000e+08  1.00  216.36   15  1.651291227698388e+03 13
+11  46 x  78  1  1.492608e+08  1.00  149.70   27  6.551161335846584e+02 13
+12  48 x  68  1  1.357824e+08  1.01  134.25   26  1.943435982643127e-06  9
+13  31 x  37  7  1.027712e+08  1.00  102.89    8  3.847124173932926e+10  8
+14   8 x  38 11  1.444608e+08  1.01  143.34   27  2.923540598700724e+06 11
+15   1 x  62 33  2.291520e+08  1.01  227.04   15  1.108997288135077e+03 13
+16  14 x  94 10  2.316160e+08  0.99  233.65   15  5.152160000000000e+05 16
+17  26 x  67  9  3.762720e+08  1.00  377.65   15  2.947368618590736e+01 12
+18   2 x  34 44  3.111680e+08  1.01  308.89   14  9.700646212341634e+02 12
+19  28 x  66  6  2.661120e+08  1.01  262.49   15  1.268230698051755e+01 12
+20   7 x  33 26  2.498496e+08  1.01  248.54   26  5.987713249471707e+02 12
+21   1 x   5  2  2.000000e+08  1.03  194.47   20  5.009945671206671e+07 12
+22   8 x  16 17  5.222400e+07  1.00   52.14   15  6.109968728264851e+00 13
+23   7 x  36 11  2.882880e+08  1.00  287.82   14  4.850340602751729e+02 12
+24  23 x 124  1  1.186432e+08  1.00  118.27   27  1.300000000000000e+01 16
+
+                     Maximum   Rate  423.94 
+                     Average   Rate  236.59 
+                     Geometric Mean  212.02 
+                     Harmonic  Mean  184.05 
+                     Minimum   Rate   52.14 
+
+                     Do Span     19
+
+                Overall
+
+                Part 1 weight 1
+                Part 2 weight 2
+                Part 3 weight 1
+
+                     Maximum   Rate  458.64 
+                     Average   Rate  246.02 
+                     Geometric Mean  219.73 
+                     Harmonic  Mean  189.68 
+                     Minimum   Rate   52.11 
+
+                     Do Span    167
+
+
+Type additional information to include in linpack.txt - Press Enter
+
+
+##########################################
+Single Precision C Whetstone Benchmark vfpv4 32 Bit, Sat May 21 22:35:14 2016
+
+Calibrate
+       0.01 Seconds          1   Passes (x 100)
+       0.04 Seconds          5   Passes (x 100)
+       0.11 Seconds         25   Passes (x 100)
+       0.37 Seconds        125   Passes (x 100)
+       1.84 Seconds        625   Passes (x 100)
+       9.18 Seconds       3125   Passes (x 100)
+
+Use 3402  passes (x 100)
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+
+
+          Single Precision C/C++ Whetstone Benchmark
+
+Loop content                  Result              MFLOPS      MOPS   Seconds
+
+N1 floating point     -1.12475013732910156       316.696              0.206
+N2 floating point     -1.12274742126464844       290.569              1.574
+N3 if then else        1.00000000000000000                1153.383    0.305
+N4 fixed point        12.00000000000000000                1441.820    0.743
+N6 floating point      0.99999982118606567       276.492              6.637
+N7 assignments         3.00000000000000000                1153.437    0.545
+
+MWIPS                                           3398.513             10.010
+
+
+A new results file, whets.txt,  will have been created in the same
+directory as the .EXE files, if one did not already exist.
+
+Type additional information to include in whets.txt - Press Enter
+
+root@linaro-developer:~# exit
+
+Script done on Sat 21 May 2016 10:38:05 PM UTC
