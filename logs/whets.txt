@@ -1,0 +1,78 @@
+
+##############################################
+
+Whetstone Single Precision C Benchmark  vfpv4 32 Bit, Sat May 21 22:32:52 2016
+
+
+Loop content                   Result              MFLOPS      MOPS   Seconds
+
+N1 floating point      -1.12475013732910156       200.606               0.063
+N2 floating point      -1.12274742126464844       108.603               0.811
+N3 if then else         1.00000000000000000                 157.268     0.431     1.000
+N4 fixed point         12.00000000000000000                 150.439     1.371    12.000
+       0.00000000000000000                   0.000     0.000     0.000
+N6 floating point       0.99999982118606567        69.164               5.108
+N7 assignments          3.00000000000000000                  54.926     2.204     3.000
+       0.00000000000000000                   0.000     0.000     0.000
+
+MWIPS                                             655.798               9.988
+
+SYSTEM INFORMATION
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+ 
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+ 
+
+Additional information - 
+
+
+##############################################
+
+Whetstone Single Precision C Benchmark  vfpv4 32 Bit, Sat May 21 22:33:37 2016
+
+
+Loop content                   Result              MFLOPS      MOPS   Seconds
+
+N1 floating point      -1.12475013732910156       200.502               0.063
+N2 floating point      -1.12274742126464844       108.509               0.811
+N3 if then else         1.00000000000000000                 157.162     0.431     1.000
+N4 fixed point         12.00000000000000000                 150.398     1.372    12.000
+       0.00000000000000000                   0.000     0.000     0.000
+N6 floating point       0.99999982118606567        69.178               5.107
+N7 assignments          3.00000000000000000                  54.922     2.204     3.000
+       0.00000000000000000                   0.000     0.000     0.000
+
+MWIPS                                             655.760               9.988
+
+SYSTEM INFORMATION
+
+From File /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 38.40
+Features	: fp asimd evtstrm crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+ 
+
+From File /proc/version
+Linux version 4.8.11-v8 (dinesh@dinesh-Inspiron-15-7568) (gcc version 5.4.0 20160609 (Ubuntu/Linaro 5.4.0-6ubuntu1~16.04.1) ) #1 SMP Mon Nov 28 23:29:25 IST 2016
+ 
+
+Additional information - mv log log.whets
+

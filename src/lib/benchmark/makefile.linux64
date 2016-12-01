@@ -1,0 +1,25 @@
+
+CC=aarch64-linux-gnu-gcc
+
+WHETS_OBJS=cmd_whets.o cpuidc.o
+LLOOPS_OBJS=lloops.o cpuidc.o
+LLOOPS2_OBJS=lloops2.o cpuidc.o
+
+CFLAGS=-DNON_BAREMETAL
+
+all: whets.64 lloops.64 lloops2.64
+
+clean: 
+	rm -f *.o 
+
+lloops2.64: $(LLOOPS2_OBJS)
+	$(CC) -o $@ $(LLOOPS2_OBJS) -lm
+
+lloops.64: $(LLOOPS_OBJS)
+	$(CC) -o $@ $(LLOOPS_OBJS) -lm
+
+whets.64: $(WHETS_OBJS)
+	$(CC) -o $@ $(WHETS_OBJS)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $<
