@@ -35,7 +35,7 @@ In AArch64 this is extended to provide 64 bit virtual addressing for 48 bit phys
 \subsection{Register Set in AARch64}
 AArch64 has 31 general purpose registers, all 64 bit.  These registers can be accessed by most instructions as 64 bit double words or as 32bit words.  All the registers can be accessed as 64-bit registers x0 - x30 or 32-bit sub registers w0 - w30.  If a register is written as 32-bit word, then the top half of the register is cleared.  All the base pointer registers are 64 bit to support 64 bit virtual addressing.  There are 32 registers for SIMD and Floating Point, all 128 bit wide.  These registers map differently than the earlier ARM architectures. Each AArch64 64-bit general-purpose register (X0-X30) also has a 32-bit (W0-W30) form.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
     \includegraphics[width=3.0in]{./figures/reg.eps}
     \caption{Register mappings in ARMv7 and ARMv8.}
@@ -47,6 +47,27 @@ The Program Counter (PC) can't be read or modified directly, unlike the other ge
 
 \subsection{Execution States in ARMv8-A}
 A fully populated ARMv8-A supports both AArch32 and AArch64 execution states. The transition between two states happens through exception boundary.  This is different than in ARMv7 where execution state changes from 32 bit instructions to 16 bit thumb instructions through interworking branch instruction(e.g. BLX). While taking or returning an exception, the execution state can change from 32 bit to 64 bit or vice versa.
+
+\subsection{Execution Levels in AArch64}
+The ARMv8 exception model defines Exception levels EL3-EL0, where EL0 is the least privileged and EL3 is the most privileged, in the order of increasing privileged levels. The execution levels are explained below, and in Fig \ref{fig:Execpfig}.
+
+\begin{figure}[b!]
+	\centering
+    \includegraphics[width=7.0in]{./figures/exceptionLevels.eps}
+    \caption{ARMv8 Exception Model.}
+    \label{fig:Execpfig}
+\end{figure}
+
+
+
+\begin{itemize}
+	\item EL0: Unprivileged execution. All user applications run in this level.
+	\item EL1: Privileged level. OS Kernels typically run in this level.
+	\item EL2: Provides support for processor virtualization (Hypervisor).
+	\item EL3: Provides support for a Secure State.
+\end{itemize}
+Exceptions can be taken to the same or a higher exception level. There are different Vector Base Address Registers for EL1, EL2, EL3.
+
 
 \subsection{Subsection Heading Here}
 Write your subsection text here.
