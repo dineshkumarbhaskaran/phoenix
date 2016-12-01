@@ -6,13 +6,18 @@ LLOOPS_OBJS=lloops.o cpuidc.o
 LLOOPS2_OBJS=lloops2.o cpuidc.o
 DHRY_OBJS=dhry/dhry_1.o dhry/dhry_2.o cpuidc.o
 LINPACK_OBJS=linpack.o cpuidc.o
+COREMARK_OBJS= coremark_v1.0/core_list_join.o coremark_v1.0/core_main.o coremark_v1.0/core_matrix.o coremark_v1.0/core_state.o coremark_v1.0/core_util.o coremark_v1.0/linux64/core_portme.o
 
 CFLAGS=-DNON_BAREMETAL -I. -O2
 
+ifeq ($(COREMARK), 1)
+	CFLAGS+= -o2 -mcpu=cortex-a53 -DPERFORMANCE_RUN=1 -DITERATIONS=1000 -I./coremark_v1.0/ -I./coremark_v1.0/linux/ -DCOMPILER_FLAGS=\"-o2\"
+all:coremark.64
+else
 all: whets.64 lloops.64 lloops2.64 dhry.64 linpack.64
-
+endif
 clean: 
-	rm -f *.o dhry/*.o *.64
+	rm -f *.o dhry/*.o *.32 coremark_v1.0/*.o coremark_v1.0/linux64/*.o 
 
 lloops2.64: $(LLOOPS2_OBJS)
 	$(CC) -o $@ $(LLOOPS2_OBJS) -lm
@@ -28,6 +33,9 @@ dhry.64: $(DHRY_OBJS)
 
 linpack.64: $(LINPACK_OBJS)
 	$(CC) -o $@ $(LINPACK_OBJS)
+
+coremark.64: $(COREMARK_OBJS)
+	$(CC) -o $@ $(COREMARK_OBJS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<
