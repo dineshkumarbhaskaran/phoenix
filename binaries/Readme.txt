@@ -28,5 +28,9 @@ Preparing the SD card
  
 3. Move contents of boot_32/boot_64 to first partition
 
+4. 32 bits boots out of the box.
 
+5. 64 bit boots happens through u-boot, once at the prompt execute "run rpi_boot"
+
+Reference
 https://www.raspberrypi.org/forums/viewtopic.php?f=72&t=143765

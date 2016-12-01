@@ -7,7 +7,7 @@ LLOOPS2_OBJS=lloops2.o cpuidc.o
 DHRY_OBJS=dhry/dhry_1.o dhry/dhry_2.o cpuidc.o
 LINPACK_OBJS=linpack.o cpuidc.o
 
-CFLAGS=-DNON_BAREMETAL -I.
+CFLAGS=-DNON_BAREMETAL -I. -O2
 
 all: whets.64 lloops.64 lloops2.64 dhry.64 linpack.64
 

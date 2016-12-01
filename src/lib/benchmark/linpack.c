@@ -82,6 +82,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "cpuidh.h"
+#include <string.h>
 #else
 #include <common.h>
 #include <malloc.h>
