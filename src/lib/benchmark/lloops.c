@@ -51,7 +51,11 @@
 
 static   struct Arrays
    {
+#ifdef OLD_BUFFER
      double U[1001];
+#else
+     double U[54200];
+#endif
      double V[1001];
      double W[1001];
      double X[1001];
@@ -123,7 +127,11 @@ static   struct Arrays
      double Zu0[7][101];
      double Zv0[7][101];
      double Zz0[7][101];
+#ifdef OLD_BUFFER
      double Za0[101][25];
+#else
+     double Za0[7][101];
+#endif
      double Stb50;               
      double Xx0;
 
